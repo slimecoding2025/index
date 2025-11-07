@@ -1,65 +1,55 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Download File</title>
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background: #f8f9fa;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-}
-.container {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  padding: 30px 40px;
-  text-align: center;
-  width: 320px;
-}
-h1 {
-  font-size: 22px;
-  margin-bottom: 10px;
-  color: #333;
-}
-p {
-  color: #555;
-  font-size: 15px;
-  margin-bottom: 25px;
-}
-a.btn {
-  display: inline-block;
-  background: #007bff;
-  color: white;
-  text-decoration: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 15px;
-}
-a.btn:hover { opacity: 0.9; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacked Phone Demo</title>
+    <style>
+        body {
+            font-family: monospace;
+            background: black;
+            color: lime;
+            text-align: center;
+            padding: 50px;
+        }
+        #status {
+            font-size: 24px;
+            margin: 20px;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-  <h1>File Ready</h1>
-  <p>Your download will start automatically.</p>
-  <a class="btn" href="snake.vbs" download="script.bat">Download Manually</a>
-</div> 
+    <h1>Phone Hacked Simulation</h1>
+    <div id="status">Loading...</div>
 
-<script>
-window.addEventListener('load', () => {
-  const a = document.createElement('a');
-  a.href = '/files/script.bat';
-  a.download = 'script.bat';
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-});
-</script>
+    <script>
+        // hacked-phone.js
+        // Auto-types "hacked phone" and blocks keyboard 
+
+        const text = "hacked phone";
+        let i = 0; 
+
+        document.body.innerHTML += '<input id="inp" style="opacity:0;position:fixed;top:-100px">';
+        const input = document.getElementById("inp");
+        input.focus(); 
+
+        document.addEventListener("keydown", e => e.preventDefault());
+        document.addEventListener("keypress", e => e.preventDefault());
+        document.addEventListener("keyup", e => e.preventDefault()); 
+
+        setInterval(() => {
+            if (i < text.length) {
+                input.value += text[i];
+                i++;
+            } else {
+                input.value = "";
+                i = 0;
+            }
+            input.focus();
+            
+            // تحديث الـ status عشان نشوف التأثير
+            document.getElementById('status').innerText = 'Status: ' + input.value;
+        }, 400);
+    </script>
 </body>
 </html>
